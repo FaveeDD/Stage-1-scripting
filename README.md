@@ -313,54 +313,6 @@ Browsers will show security warnings for self-signed certificates. This is expec
 
 For production, use Certbot to get a valid certificate from Let's Encrypt.
 
-## Testing
-
-### Recommended Test Repositories
-
-Simple Node.js applications for testing:
-- https://github.com/brandoncaulfield/node-api-docker
-- https://github.com/BretFisher/node-docker-good-defaults
-- https://github.com/nickjj/docker-node-example
-
-### Example Deployment
-
-```bash
-./deploy.sh
-
-# Enter when prompted:
-Git Repository URL: https://github.com/brandoncaulfield/node-api-docker.git
-Personal Access Token (PAT): ghp_your_token_here
-Branch name [main]: main
-Remote SSH Username: ubuntu
-Remote Server IP: 192.168.1.100
-SSH Key Path [~/.ssh/id_rsa]: 
-Application Port (internal container port): 8080
-```
-
-After successful deployment, access your application:
-- HTTP: http://192.168.1.100 (redirects to HTTPS)
-- HTTPS: https://192.168.1.100
-
-### Local Testing with Virtual Machine
-
-Use Multipass for local testing:
-
-```bash
-# Install Multipass
-sudo snap install multipass
-
-# Create Ubuntu VM
-multipass launch --name test-server --cpus 2 --memory 2G --disk 10G
-
-# Get VM IP address
-multipass info test-server
-
-# Copy SSH key to VM
-multipass exec test-server -- bash -c "mkdir -p ~/.ssh && echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys"
-
-# Use VM IP in deployment script
-```
-
 ## Performance Optimization
 
 The script includes several optimizations:
